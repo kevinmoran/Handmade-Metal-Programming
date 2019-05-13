@@ -77,7 +77,7 @@ int main(int argc, const char* argv[])
 
     // Create CAMetalLayer and add to mainWindow
     CAMetalLayer* caMetalLayer = [CAMetalLayer new];
-    caMetalLayer.frame = NSMakeRect(0,0, mainWindow.frame.size.width, mainWindow.frame.size.height);
+    caMetalLayer.frame = mainWindow.contentView.frame;
     caMetalLayer.device = mtlDevice;
     caMetalLayer.pixelFormat = MTLPixelFormatBGRA8Unorm;
     [mainWindow.contentView.layer addSublayer:caMetalLayer];
@@ -199,7 +199,7 @@ int main(int argc, const char* argv[])
         @autoreleasepool {
         if(osxMainDelegate->windowWasResized)
         {
-            caMetalLayer.frame = NSMakeRect(0,0,mainWindow.frame.size.width, mainWindow.frame.size.height);
+            caMetalLayer.frame = mainWindow.contentView.frame;
             caMetalLayer.drawableSize = caMetalLayer.frame.size;
             osxMainDelegate->windowWasResized = false;
         }

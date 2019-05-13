@@ -74,7 +74,7 @@ int main(int argc, const char* argv[])
 
     // Create CAMetalLayer and add to mainWindow
     CAMetalLayer* caMetalLayer = [CAMetalLayer new];
-    caMetalLayer.frame = NSMakeRect(0,0, mainWindow.frame.size.width, mainWindow.frame.size.height);
+    caMetalLayer.frame = mainWindow.contentView.frame;
     caMetalLayer.device = mtlDevice;
     caMetalLayer.pixelFormat = MTLPixelFormatBGRA8Unorm;
     [mainWindow.contentView.layer addSublayer:caMetalLayer];
@@ -94,9 +94,9 @@ int main(int argc, const char* argv[])
 
     // Create Vertex Buffer
     float vertexData[] = { // x, y, r, g, b, a
-         0.5, -0.5, 1, 0, 0, 1,
-         0.0,  0.5, 0, 1, 0, 1,
-        -0.5, -0.5, 0, 0, 1, 1
+         0.5f, -0.5f, 1.f, 0.f, 0.f, 1.f,
+         0.0f,  0.5f, 0.f, 1.f, 0.f, 1.f,
+        -0.5f, -0.5f, 0.f, 0.f, 1.f, 1.f
     };
 
     id<MTLBuffer> vertexBuffer = [mtlDevice newBufferWithBytes:vertexData length:sizeof(vertexData)
@@ -161,7 +161,7 @@ int main(int argc, const char* argv[])
         @autoreleasepool {
         if(osxMainDelegate->windowWasResized)
         {
-            caMetalLayer.frame = NSMakeRect(0,0,mainWindow.frame.size.width, mainWindow.frame.size.height);
+            caMetalLayer.frame = mainWindow.contentView.frame;
             caMetalLayer.drawableSize = caMetalLayer.frame.size;
             osxMainDelegate->windowWasResized = false;
         }
