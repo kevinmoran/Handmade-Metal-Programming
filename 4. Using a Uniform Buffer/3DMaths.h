@@ -8,7 +8,7 @@ struct float2
 union float4
 {
     struct {
-    float x, y, z, w;
+        float x, y, z, w;
     };
     struct {
         float r, g, b, a;
