@@ -2,7 +2,7 @@
 
 clear
 
-EXE_NAME='UsingAUniformBuffer'
+EXE_NAME="UsingAUniformBuffer"
 
 COMMON_COMPILER_FLAGS="-Wall -std=c++11 -fno-exceptions -fno-rtti -Wno-missing-braces"
 DEBUG_FLAGS="-g -fno-inline"
@@ -12,6 +12,7 @@ COMPILER_FLAGS="$COMMON_COMPILER_FLAGS $DEBUG_FLAGS"
 # COMPILER_FLAGS="$COMMON_COMPILER_FLAGS $RELEASE_FLAGS"
 
 FRAMEWORKS="-framework Cocoa -framework Metal -framework QuartzCore"
+
 mkdir -p build
 pushd build > /dev/null
 clang $COMPILER_FLAGS $FRAMEWORKS -o $EXE_NAME ../main.mm
