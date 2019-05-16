@@ -180,6 +180,9 @@ int main(int argc, const char* argv[])
     vertDesc.attributes[VertexAttributeIndex_Position].format = MTLVertexFormatFloat3;
     vertDesc.attributes[VertexAttributeIndex_Position].offset = 0;
     vertDesc.attributes[VertexAttributeIndex_Position].bufferIndex = VertexBufferIndex_Attributes;
+    vertDesc.attributes[VertexAttributeIndex_TexCoords].format = MTLVertexFormatFloat2;
+    vertDesc.attributes[VertexAttributeIndex_TexCoords].offset = 2 * sizeof(float);
+    vertDesc.attributes[VertexAttributeIndex_TexCoords].bufferIndex = VertexBufferIndex_Attributes;
     vertDesc.layouts[VertexBufferIndex_Attributes].stride = 3 * sizeof(float);
     vertDesc.layouts[VertexBufferIndex_Attributes].stepRate = 1;
     vertDesc.layouts[VertexBufferIndex_Attributes].stepFunction = MTLVertexStepFunctionPerVertex;
@@ -352,8 +355,6 @@ int main(int argc, const char* argv[])
         // Calculate view matrix from camera data
         float4x4 viewMat = rotateXMat(-cameraPitch) * rotateYMat(-cameraYaw) * translationMat(-cameraPos);
         cameraFwd = (float3){viewMat.m[2][0], viewMat.m[2][1], -viewMat.m[2][2]};
-
-        printf("pos:(%f, %f, %f) fwd:(%f,%f,%f)\n", cameraPos.x, cameraPos.y, cameraPos.z, cameraFwd.x, cameraFwd.y, cameraFwd.z);
 
         // Spin the quad
         float4x4 modelMat = rotateYMat(M_PI * currentTimeInSeconds);
