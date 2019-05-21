@@ -280,10 +280,11 @@ LoadedObj loadObj(const char* filename)
         }
         else if(currChar == 's' && *(++s) == ' ')
         {
-            if(*s == 'o' && *(s+1) == 'f' && *(s+2) == 'f') 
+            ++s;
+            if((*s == 'o' && *(s+1) == 'f' && *(s+2) == 'f') || *s == '0')
                 smoothNormals = false;
             else {
-                assert((*s == 'o' && *(s+1) == 'n') || *s >= '0'|| *s <= '9');
+                assert((*s == 'o' && *(s+1) == 'n') || (*s >= '1'&& *s <= '9'));
                 smoothNormals = true;
             }
         }
