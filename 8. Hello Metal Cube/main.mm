@@ -180,9 +180,6 @@ int main(int argc, const char* argv[])
     vertDesc.attributes[VertexAttributeIndex_Position].format = MTLVertexFormatFloat3;
     vertDesc.attributes[VertexAttributeIndex_Position].offset = 0;
     vertDesc.attributes[VertexAttributeIndex_Position].bufferIndex = VertexBufferIndex_Attributes;
-    vertDesc.attributes[VertexAttributeIndex_TexCoords].format = MTLVertexFormatFloat2;
-    vertDesc.attributes[VertexAttributeIndex_TexCoords].offset = 2 * sizeof(float);
-    vertDesc.attributes[VertexAttributeIndex_TexCoords].bufferIndex = VertexBufferIndex_Attributes;
     vertDesc.layouts[VertexBufferIndex_Attributes].stride = 3 * sizeof(float);
     vertDesc.layouts[VertexBufferIndex_Attributes].stepRate = 1;
     vertDesc.layouts[VertexBufferIndex_Attributes].stepFunction = MTLVertexStepFunctionPerVertex;
@@ -376,7 +373,6 @@ int main(int argc, const char* argv[])
         mtlRenderPassDescriptor.depthAttachment.clearDepth = 1.0;
         mtlRenderPassDescriptor.depthAttachment.loadAction = MTLLoadActionClear;
         mtlRenderPassDescriptor.depthAttachment.storeAction = MTLStoreActionDontCare;
-        mtlRenderPassDescriptor.stencilAttachment.texture = mtlDepthTexture;
 
         id<MTLCommandBuffer> mtlCommandBuffer = [mtlCommandQueue commandBuffer];
 

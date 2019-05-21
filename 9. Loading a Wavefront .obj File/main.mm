@@ -393,7 +393,6 @@ int main(int argc, const char* argv[])
         mtlRenderPassDescriptor.depthAttachment.clearDepth = 1.0;
         mtlRenderPassDescriptor.depthAttachment.loadAction = MTLLoadActionClear;
         mtlRenderPassDescriptor.depthAttachment.storeAction = MTLStoreActionDontCare;
-        mtlRenderPassDescriptor.stencilAttachment.texture = mtlDepthTexture;
 
         id<MTLCommandBuffer> mtlCommandBuffer = [mtlCommandQueue commandBuffer];
 
