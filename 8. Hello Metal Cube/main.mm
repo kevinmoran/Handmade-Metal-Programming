@@ -353,7 +353,7 @@ int main(int argc, const char* argv[])
         float4x4 viewMat = rotateXMat(-cameraPitch) * rotateYMat(-cameraYaw) * translationMat(-cameraPos);
         cameraFwd = (float3){viewMat.m[2][0], viewMat.m[2][1], -viewMat.m[2][2]};
 
-        // Spin the quad
+        // Spin the cube
         float4x4 modelMat = rotateYMat(0.2f * M_PI * currentTimeInSeconds);
         
         // Copy model-view-projection matrix to uniform buffer
