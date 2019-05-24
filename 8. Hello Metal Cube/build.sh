@@ -15,6 +15,9 @@ COMPILER_FLAGS="$COMMON_COMPILER_FLAGS $DEBUG_FLAGS"
 
 FRAMEWORKS="-framework Cocoa -framework Metal -framework QuartzCore"
 
+# Turn on Metal API Validation. Great for catching API misuse, remove for Release build
+METAL_DEVICE_WRAPPER_TYPE=1
+
 mkdir -p build
 pushd build > /dev/null
 clang $COMPILER_FLAGS $FRAMEWORKS -o $EXE_NAME $SOURCE_FILES
