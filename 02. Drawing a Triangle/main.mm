@@ -36,7 +36,7 @@
 
 int main(int argc, const char* argv[])
 {
-	NSApplication* app = [NSApplication sharedApplication];
+    NSApplication* app = [NSApplication sharedApplication];
     [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
     [NSApp activateIgnoringOtherApps:YES];
 

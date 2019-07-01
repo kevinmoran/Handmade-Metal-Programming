@@ -2,7 +2,7 @@
 
 float degreesToRadians(float degs)
 {
-	return degs * (M_PI / 180.0f);
+    return degs * (M_PI / 180.0f);
 }
 
 float length(float3 v)
@@ -20,11 +20,11 @@ float3 normalise(float3 v)
 
 float3 cross(float3 a, float3 b)
 {
-	float3 result;
-	result.x = ((a.y * b.z) - (a.z * b.y));
-	result.y = ((a.z * b.x) - (a.x * b.z));
-	result.z = ((a.x * b.y) - (a.y * b.x));
-	return result;
+    float3 result;
+    result.x = ((a.y * b.z) - (a.z * b.y));
+    result.y = ((a.z * b.x) - (a.x * b.z));
+    result.z = ((a.x * b.y) - (a.y * b.x));
+    return result;
 }
 
 float3 operator* (float3 v, float f)
@@ -34,17 +34,17 @@ float3 operator* (float3 v, float f)
 }
 
 float3 operator+= (float3 &lhs, float3 rhs) {
-	lhs.x += rhs.x;
-	lhs.y += rhs.y;
-	lhs.z += rhs.z;
-	return lhs;
+    lhs.x += rhs.x;
+    lhs.y += rhs.y;
+    lhs.z += rhs.z;
+    return lhs;
 }
 
 float3 operator-= (float3 &lhs, float3 rhs) {
-	lhs.x -= rhs.x;
-	lhs.y -= rhs.y;
-	lhs.z -= rhs.z;
-	return lhs;
+    lhs.x -= rhs.x;
+    lhs.y -= rhs.y;
+    lhs.z -= rhs.z;
+    return lhs;
 }
 
 float3 operator- (float3 v)
@@ -54,29 +54,29 @@ float3 operator- (float3 v)
 }
 
 float4x4 rotateXMat(float rad) {
-	float4x4 result = {};
-	float sinTheta = sinf(rad);
-	float cosTheta = cosf(rad);
+    float4x4 result = {};
+    float sinTheta = sinf(rad);
+    float cosTheta = cosf(rad);
     result.m[0][0] = 1.f;
-	result.m[1][1] = cosTheta;
-	result.m[1][2] = sinTheta;
-	result.m[2][1] = -sinTheta;
-	result.m[2][2] = cosTheta;
+    result.m[1][1] = cosTheta;
+    result.m[1][2] = sinTheta;
+    result.m[2][1] = -sinTheta;
+    result.m[2][2] = cosTheta;
     result.m[3][3] = 1.f;
-	return result;
+    return result;
 }
 
 float4x4 rotateYMat(float rad) {
-	float4x4 result = {};
-	float sinTheta = sinf(rad);
-	float cosTheta = cosf(rad);
-	result.m[0][0] = cosTheta;
-	result.m[0][2] = -sinTheta;
+    float4x4 result = {};
+    float sinTheta = sinf(rad);
+    float cosTheta = cosf(rad);
+    result.m[0][0] = cosTheta;
+    result.m[0][2] = -sinTheta;
     result.m[1][1] = 1.f;
-	result.m[2][0] = sinTheta;
-	result.m[2][2] = cosTheta;
+    result.m[2][0] = sinTheta;
+    result.m[2][2] = cosTheta;
     result.m[3][3] = 1.f;
-	return result;
+    return result;
 }
 
 float4x4 translationMat(float3 trans)
@@ -115,14 +115,14 @@ float4x4 makePerspectiveMat(float aspectRatio, float fovY, float zNear, float zF
 float4x4 operator* (float4x4 a, float4x4 b)
 {
     float4x4 result = {};
-	for(int col = 0; col < 4; ++col) {
-		for(int row = 0; row < 4; ++row) {
-			float sum = 0.0f;
-			for(int i = 0; i < 4; ++i) {
-				sum += b.m[col][i] * a.m[i][row];
-			}
-			result.m[col][row] = sum;
-		}
-	}
-	return result;
+    for(int col = 0; col < 4; ++col) {
+        for(int row = 0; row < 4; ++row) {
+            float sum = 0.0f;
+            for(int i = 0; i < 4; ++i) {
+                sum += b.m[col][i] * a.m[i][row];
+            }
+            result.m[col][row] = sum;
+        }
+    }
+    return result;
 }

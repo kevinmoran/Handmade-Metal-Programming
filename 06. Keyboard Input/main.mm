@@ -45,7 +45,7 @@ double osxGetCurrentTimeInSeconds(mach_timebase_info_data_t tb)
 
 int main(int argc, const char* argv[])
 {
-	NSApplication* app = [NSApplication sharedApplication];
+    NSApplication* app = [NSApplication sharedApplication];
     [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
     [NSApp activateIgnoringOtherApps:YES];
 

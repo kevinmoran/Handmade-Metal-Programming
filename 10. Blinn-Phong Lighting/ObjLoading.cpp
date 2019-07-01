@@ -14,127 +14,127 @@
 
 static int parseInt(const char* s, const char** end)
 {
-	// skip whitespace
-	while (*s == ' ' || *s == '\t')
-		++s;
-
-	// read sign bit
-	int sign = (*s == '-');
-	if(*s == '-' || *s == '+') 
+    // skip whitespace
+    while (*s == ' ' || *s == '\t')
         ++s;
 
-	unsigned int result = 0;
-	while((unsigned(*s - '0') < 10))
-	{
-		result = result * 10 + (*s - '0');
-		++s;
-	}
+    // read sign bit
+    int sign = (*s == '-');
+    if(*s == '-' || *s == '+') 
+        ++s;
 
-	// return end-of-string
-	*end = s;
+    unsigned int result = 0;
+    while((unsigned(*s - '0') < 10))
+    {
+        result = result * 10 + (*s - '0');
+        ++s;
+    }
 
-	return sign ? -int(result) : int(result);
+    // return end-of-string
+    *end = s;
+
+    return sign ? -int(result) : int(result);
 }
 
 static float parseFloat(const char* s, const char** end)
 {
-	static const double powers[] = {1e0, 1e+1, 1e+2, 1e+3, 1e+4, 1e+5, 1e+6, 1e+7, 1e+8, 1e+9, 1e+10, 1e+11, 1e+12, 1e+13, 1e+14, 1e+15, 1e+16, 1e+17, 1e+18, 1e+19, 1e+20, 1e+21, 1e+22};
+    static const double powers[] = {1e0, 1e+1, 1e+2, 1e+3, 1e+4, 1e+5, 1e+6, 1e+7, 1e+8, 1e+9, 1e+10, 1e+11, 1e+12, 1e+13, 1e+14, 1e+15, 1e+16, 1e+17, 1e+18, 1e+19, 1e+20, 1e+21, 1e+22};
 
-	// skip whitespace
-	while (*s == ' ' || *s == '\t')
-		++s;
-
-	// read sign
-	double sign = (*s == '-') ? -1 : 1;
-	if(*s == '-' || *s == '+') 
+    // skip whitespace
+    while (*s == ' ' || *s == '\t')
         ++s;
 
-	// read integer part
-	double result = 0;
-	int power = 0;
+    // read sign
+    double sign = (*s == '-') ? -1 : 1;
+    if(*s == '-' || *s == '+') 
+        ++s;
 
-	while (unsigned(*s - '0') < 10)
-	{
-		result = result * 10 + (double)(*s - '0');
-		++s;
-	}
+    // read integer part
+    double result = 0;
+    int power = 0;
 
-	// read fractional part
-	if (*s == '.')
-	{
-		++s;
+    while (unsigned(*s - '0') < 10)
+    {
+        result = result * 10 + (double)(*s - '0');
+        ++s;
+    }
 
-		while (unsigned(*s - '0') < 10)
-		{
-			result = result * 10 + (double)(*s - '0');
-			++s;
-			--power;
-		}
-	}
+    // read fractional part
+    if (*s == '.')
+    {
+        ++s;
 
-	// read exponent part
+        while (unsigned(*s - '0') < 10)
+        {
+            result = result * 10 + (double)(*s - '0');
+            ++s;
+            --power;
+        }
+    }
+
+    // read exponent part
     // NOTE: bitwise OR with ' ' will transform an uppercase char 
     // to lowercase while leaving lowercase chars unchanged
-	if ((*s | ' ') == 'e')
-	{
-		++s;
+    if ((*s | ' ') == 'e')
+    {
+        ++s;
 
-		// read exponent sign
-		int expSign = (*s == '-') ? -1 : 1;
-		if(*s == '-' || *s == '+') 
+        // read exponent sign
+        int expSign = (*s == '-') ? -1 : 1;
+        if(*s == '-' || *s == '+') 
             ++s;
 
-		// read exponent
-		int expPower = 0;
-		while (unsigned(*s - '0') < 10)
-		{
-			expPower = expPower * 10 + (*s - '0');
-			++s;
-		}
+        // read exponent
+        int expPower = 0;
+        while (unsigned(*s - '0') < 10)
+        {
+            expPower = expPower * 10 + (*s - '0');
+            ++s;
+        }
 
-		power += expSign * expPower;
-	}
+        power += expSign * expPower;
+    }
 
-	// return end-of-string
-	*end = s;
+    // return end-of-string
+    *end = s;
 
-	// note: this is precise if result < 9e15
-	// for longer inputs we lose a bit of precision here
-	if (unsigned(-power) < sizeof(powers) / sizeof(powers[0]))
-		return float(sign * result / powers[-power]);
-	else if (unsigned(power) < sizeof(powers) / sizeof(powers[0]))
-		return float(sign * result * powers[power]);
-	else
-		return float(sign * result * pow(10.0, power));
+    // note: this is precise if result < 9e15
+    // for longer inputs we lose a bit of precision here
+    if (unsigned(-power) < sizeof(powers) / sizeof(powers[0]))
+        return float(sign * result / powers[-power]);
+    else if (unsigned(power) < sizeof(powers) / sizeof(powers[0]))
+        return float(sign * result * powers[power]);
+    else
+        return float(sign * result * pow(10.0, power));
 }
 
 static const char* parseFaceElement(const char* s, int& vi, int& vti, int& vni)
 {
-	while (*s == ' ' || *s == '\t')
-		++s;
+    while (*s == ' ' || *s == '\t')
+        ++s;
 
-	vi = parseInt(s, &s);
+    vi = parseInt(s, &s);
 
-	if (*s != '/')
-		return s;
-	++s;
+    if (*s != '/')
+        return s;
+    ++s;
 
-	// handle vi//vni indices
-	if (*s != '/')
-		vti = parseInt(s, &s);
+    // handle vi//vni indices
+    if (*s != '/')
+        vti = parseInt(s, &s);
 
-	if (*s != '/')
-		return s;
-	++s;
+    if (*s != '/')
+        return s;
+    ++s;
 
-	vni = parseInt(s, &s);
+    vni = parseInt(s, &s);
 
-	return s;
+    return s;
 }
 
 static int fixupIndex(int index, size_t size)
 {
-	return (index >= 0) ? index - 1 : int(size) + index;
+    return (index >= 0) ? index - 1 : int(size) + index;
 }
 
 static bool areAlmostEqual(float a, float b)
