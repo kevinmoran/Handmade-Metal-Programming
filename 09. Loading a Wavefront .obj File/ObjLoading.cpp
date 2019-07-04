@@ -301,11 +301,6 @@ LoadedObj loadObj(const char* filename)
         v->norm[0] *= invNormLength;
         v->norm[1] *= invNormLength;
         v->norm[2] *= invNormLength;
-
-        // printf("(%f, %f, %f) (%f, %f) (%f, %f, %f)\n",
-        //     v->pos[0], v->pos[1], v->pos[2],
-        //     v->uv[0], v->uv[1],
-        //     v->norm[0], v->norm[1], v->norm[2]);
     }
 
     free(vpBuffer);
