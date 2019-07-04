@@ -7,7 +7,6 @@
 
 #include <assert.h>
 #include <math.h> //pow(), fabs(), sqrtf()
-#include <stdio.h>
 
 // Based on the .obj loading code by Arseny Kapoulkine
 // in the meshoptimizer project
