@@ -41,6 +41,6 @@ struct LoadedObj
 // LoadedObj myObj = loadObj("test.obj");
 // ... // Send myObj.vertexBuffer to GPU
 // ... // Send myObj.indexBuffer to GPU
-// free(myObj.vertexBuffer);
-// free(myObj.indexBuffer);
+// freeLoadedObj(myObj);
 LoadedObj loadObj(const char* filename);
+void freeLoadedObj(LoadedObj loadedObj);

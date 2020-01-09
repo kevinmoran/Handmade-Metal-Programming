@@ -128,9 +128,7 @@ int main(int argc, const char* argv[])
     id<MTLBuffer> cubeIndexBuffer = [mtlDevice newBufferWithBytes:cubeObj.indexBuffer 
                                                length:cubeObj.numIndices * sizeof(uint16_t)
                                                options:MTLResourceOptionCPUCacheModeDefault];
-    
-    free(cubeObj.vertexBuffer);
-    free(cubeObj.indexBuffer);
+    freeLoadedObj(cubeObj);
 
     // Load Image
     int texWidth, texHeight, texNumChannels;
