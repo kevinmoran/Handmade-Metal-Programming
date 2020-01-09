@@ -133,8 +133,7 @@ int main(int argc, const char* argv[])
                                                options:MTLResourceOptionCPUCacheModeDefault];
     cubeIndexBuffer.label = @"CubeIndexBuffer";
 
-    free(cubeObj.vertexBuffer);
-    free(cubeObj.indexBuffer);
+    freeLoadedObj(cubeObj);
 
     // Load Image
     int texWidth, texHeight, texNumChannels;

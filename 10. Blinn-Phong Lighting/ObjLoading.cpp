@@ -166,7 +166,7 @@ LoadedObj loadObj(const char* filename)
     if (fileBytes == (void*)-1)
         return result;
 
-    uint32_t numVertexvpItions = 0;
+    uint32_t numVertexPositions = 0;
     uint32_t numVertexTexCoords = 0;
     uint32_t numVertexNormals = 0;
     uint32_t numFaces = 0;
@@ -176,7 +176,7 @@ LoadedObj loadObj(const char* filename)
     {
         if(*s == 'v'){
             ++s;
-            if(*s == ' ') ++numVertexvpItions;
+            if(*s == ' ') ++numVertexPositions;
             else if(*s == 't') ++numVertexTexCoords;
             else if(*s == 'n') ++numVertexNormals;
         }
@@ -185,7 +185,7 @@ LoadedObj loadObj(const char* filename)
         while(*s != 0 && *s++ != '\n');
     }
 
-    float* vpBuffer = (float*)malloc(numVertexvpItions * 3 * sizeof(float));
+    float* vpBuffer = (float*)malloc(numVertexPositions * 3 * sizeof(float));
     float* vtBuffer = (float*)malloc(numVertexTexCoords * 2 * sizeof(float));
     float* vnBuffer = (float*)malloc(numVertexNormals * 3 * sizeof(float));
     float* vpIt = vpBuffer;
@@ -232,7 +232,7 @@ LoadedObj loadObj(const char* filename)
                 s = parseFaceElement(s, vpIdx, vtIdx, vnIdx);
                 assert(vpIdx != 0);
 
-                vpIdx = fixupIndex(vpIdx, numVertexvpItions);
+                vpIdx = fixupIndex(vpIdx, numVertexPositions);
                 vtIdx = fixupIndex(vtIdx, numVertexTexCoords);
                 vnIdx = fixupIndex(vnIdx, numVertexNormals);
                 
@@ -315,4 +315,10 @@ LoadedObj loadObj(const char* filename)
     result.indexBuffer = outIndexBuffer;
 
     return result;
+}
+
+void freeLoadedObj(LoadedObj loadedObj)
+{
+    free(loadedObj.vertexBuffer);
+    free(loadedObj.indexBuffer);
 }
