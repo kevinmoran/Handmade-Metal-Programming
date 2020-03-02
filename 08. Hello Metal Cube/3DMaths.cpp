@@ -7,7 +7,7 @@ float degreesToRadians(float degs)
 
 float length(float3 v)
 {
-    float result = v.x*v.x + v.y*v.y + v.z*v.z;
+    float result = sqrtf(v.x*v.x + v.y*v.y + v.z*v.z);
     return result;
 }
 
