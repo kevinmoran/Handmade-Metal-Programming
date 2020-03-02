@@ -35,7 +35,7 @@ This will create a `build` directory containing the output executable, along wit
 ## Resources
 These are online resources I found helpful when learning the basics of Metal/OSX programming.
 
-* [Office Metal Documentation](https://developer.apple.com/documentation/metal?language=objc)
+* [Official Metal Documentation](https://developer.apple.com/documentation/metal?language=objc)
 
 * [Archived Metal Programming Guide](https://developer.apple.com/library/archive/documentation/Miscellaneous/Conceptual/MetalProgrammingGuide/Introduction/Introduction.html?language=objc#//apple_ref/doc/uid/TP40014221) (No longer being updated but has useful tidbits)
 
