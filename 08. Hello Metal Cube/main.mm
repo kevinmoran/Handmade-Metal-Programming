@@ -340,7 +340,7 @@ int main(int argc, const char* argv[])
         // Clamp yaw to avoid floating-point errors if we turn too far
         while(cameraYaw >= 2*M_PI) 
             cameraYaw -= 2*M_PI;
-        while(cameraYaw <= 2*M_PI) 
+        while(cameraYaw <= -2*M_PI) 
             cameraYaw += 2*M_PI;
 
         // Clamp pitch to stop camera flipping upside down
